@@ -1,0 +1,263 @@
+---
+title: Установка и взаимодействие
+description: Как подключить HEXVEL и как он работает с VK API.
+---
+
+import { Plug, Server, Code } from "lucide-react";
+
+# Установка и взаимодействие <Plug className="inline-block h-5 w-5 text-emerald-500" />
+
+## Как подключить
+
+Следуйте [инструкции](https://vk.cc/cJEaQV) или обратитесь к [поддержке](https://vk.cc/cJEcN8).
+
+## Как взаимодействует модуль со страницей?
+
+Если вы раньше не работали с подобным модулем — советуем пропустить эту часть, так как тут будет много технических деталей.
+
+Давайте разберёмся, как клиент взаимодействует с сервером через технологию **LongPoll**:
+
+**LongPoll** — это механизм, который позволяет серверу уведомлять клиента о событиях в реальном времени. В отличие от традиционного протокола "запрос-ответ", где клиент постоянно отправляет запросы, в **LongPoll** клиент отправляет один запрос и удерживает соединение открытым до тех пор, пока не произойдёт событие или не истечёт время ожидания.
+
+Процесс выглядит так:
+
+1. Клиент отправляет запрос на сервер.
+2. Сервер проверяет наличие новых данных или событий.
+3. Если данные есть — сервер сразу отправляет ответ. Если нет — соединение остаётся открытым.
+4. Как только событие появляется (например, новое сообщение), сервер возвращает данные клиенту.
+
+В VK API это работает именно так: вы запрашиваете события (например, новое сообщение), и сервер уведомляет вас о них. HEXVEL принимает эти события и выполняет действия на основе введённых команд.
+
+### Примеры реализации LongPoll
+
+Ниже приведены простые примеры, как можно запросить LongPoll-сервер VK API на разных языках программирования. Это базовые иллюстрации — в реальном проекте нужно добавить обработку ошибок и авторизацию.
+
+#### Python
+
+```python
+import requests
+
+response = requests.get('https://api.vk.com/method/messages.getLongPollServer', params={
+    'access_token': 'ВАШ_ТОКЕН',
+    'v': '5.199'
+}).json()
+
+server = response['response']['server']
+key = response['response']['key']
+ts = response['response']['ts']
+
+longpoll = requests.get(f"https://{server}?act=a_check&key={key}&ts={ts}&wait=25")
+print(longpoll.json())
+```
+
+#### Rust
+
+```rust
+use reqwest::blocking::get;
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let url = "https://api.vk.com/method/messages.getLongPollServer?access_token=ВАШ_ТОКЕН&v=5.199";
+    let response = get(url)?.json::<serde_json::Value>()?;
+
+    let server = response["response"]["server"].as_str().unwrap();
+    let key = response["response"]["key"].as_str().unwrap();
+    let ts = response["response"]["ts"].as_u64().unwrap();
+
+    let longpoll_url = format!("https://{}?act=a_check&key={}&ts={}&wait=25", server, key, ts);
+    let events = get(longpoll_url)?.json::<serde_json::Value>()?;
+    println!("{:?}", events);
+
+    Ok(())
+}
+```
+
+#### Go
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	url := "https://api.vk.com/method/messages.getLongPollServer?access_token=ВАШ_ТОКЕН&v=5.199"
+	resp, _ := http.Get(url)
+	defer resp.Body.Close()
+
+	body, _ := ioutil.ReadAll(resp.Body)
+	var data map[string]interface{}
+	json.Unmarshal(body, &data)
+
+	server := data["response"].(map[string]interface{})["server"].(string)
+	key := data["response"].(map[string]interface{})["key"].(string)
+	ts := data["response"].(map[string]interface{})["ts"].(float64)
+
+	longpollURL := fmt.Sprintf("https://%s?act=a_check&key=%s&ts=%d&wait=25", server, key, int(ts))
+	longpollResp, _ := http.Get(longpollURL)
+	defer longpollResp.Body.Close()
+
+	events, _ := ioutil.ReadAll(longpollResp.Body)
+	fmt.Println(string(events))
+}
+```
+
+#### TypeScript
+
+```ts
+async function fetchLongPoll() {
+  const response = await fetch(
+    "https://api.vk.com/method/messages.getLongPollServer?access_token=ВАШ_ТОКЕН&v=5.199"
+  );
+  const data = await response.json();
+
+  const server = data.response.server;
+  const key = data.response.key;
+  const ts = data.response.ts;
+
+  const longpoll = await fetch(
+    `https://${server}?act=a_check&key=${key}&ts=${ts}&wait=25`
+  );
+  const events = await longpoll.json();
+  console.log(events);
+}
+
+fetchLongPoll();
+```
+
+Эти примеры демонстрируют базовый запрос к LongPoll-серверу VK API. В **HEXVEL** такие запросы обрабатываются автоматически, а вы просто вводите команды!
+
+### Держите наглядный пример реализации поллинга в хексе
+
+```py
+async def run_polling(
+    bot: Union[User, Bot],
+    instance_id: str,
+    max_retries: int = 5,
+    base_delay: float = 0.5,
+) -> None:
+    retry_count = 0
+    consecutive_empty_updates = 0
+    MAX_EMPTY_UPDATES = 100
+
+    async def ensure_session_active():
+        nonlocal bot
+        try:
+            if hasattr(bot.polling.api, "closed") and bot.polling.api.closed:
+                logger.warning(
+                    f"Instance {instance_id}: Session closed, reinitializing"
+                )
+                await reinitialize_api(bot)
+            elif hasattr(bot.polling.api, "is_closed") and bot.polling.api.is_closed():
+                logger.warning(
+                    f"Instance {instance_id}: Session closed, reinitializing"
+                )
+                await reinitialize_api(bot)
+        except Exception as check_error:
+            logger.error(
+                f"Instance {instance_id}: Error checking session: {check_error}"
+            )
+            await reinitialize_api(bot)
+
+    async def reinitialize_api(bot_instance):
+        try:
+            if hasattr(bot_instance.polling.api, "close"):
+                await bot_instance.polling.api.close()
+            elif hasattr(bot_instance.polling.api, "disconnect"):
+                await bot_instance.polling.api.disconnect()
+            bot_instance.polling = bot_instance.polling.__class__(
+                bot_instance.polling.api.token_generator.get_token()
+            )
+        except Exception as reinit_error:
+            logger.error(
+                f"Instance {instance_id}: Failed to reinitialize API: {reinit_error}"
+            )
+
+    while True:
+        try:
+            await ensure_session_active()
+
+            async for event in bot.polling.listen():
+                retry_count = 0
+
+                updates = event.get("updates")
+                if not updates:
+                    consecutive_empty_updates += 1
+                    if consecutive_empty_updates >= MAX_EMPTY_UPDATES:
+                        logger.warning(
+                            f"Instance {instance_id}: Too many empty updates, reconnecting"
+                        )
+                        break
+                    await sleep(base_delay)
+                    continue
+
+                consecutive_empty_updates = 0
+                for update in updates:
+                    try:
+                        await bot.router.route(update, bot.polling.api)
+                    except Exception as update_error:
+                        logger.error(
+                            f"Instance {instance_id}: Update processing error: {update_error}"
+                        )
+                    await sleep(0.05)
+
+            await sleep(base_delay)
+
+        except VKAPIError as api_error:
+            if api_error.code == 29:
+                retry_count += 1
+                delay = min(2**retry_count + random.uniform(0, 1), 60)
+                logger.warning(
+                    f"Instance {instance_id}: Rate limit reached (attempt {retry_count}/{max_retries}), waiting {delay}s"
+                )
+                await sleep(delay)
+                if retry_count >= max_retries:
+                    logger.error(
+                        f"Instance {instance_id}: Max retries reached, stopping polling"
+                    )
+                    break
+            else:
+                logger.error(f"Instance {instance_id}: VK API error: {api_error}")
+                break
+
+        except TimeoutError:
+            logger.warning(f"Instance {instance_id}: Polling timeout, reconnecting")
+            await sleep(base_delay)
+            await ensure_session_active()
+
+        except Exception as inner_error:
+            retry_count += 1
+            delay = min(2**retry_count + random.uniform(0, 1), 60)
+            logger.warning(
+                f"Instance {instance_id}: Polling error (attempt {retry_count}/{max_retries}): {inner_error}"
+            )
+            await sleep(delay)
+            if retry_count >= max_retries:
+                logger.error(
+                    f"Instance {instance_id}: Max retries reached, stopping polling"
+                )
+                break
+            await ensure_session_active()
+
+    try:
+        if hasattr(bot.polling.api, "close"):
+            await bot.polling.api.close()
+        elif hasattr(bot.polling.api, "disconnect"):
+            await bot.polling.api.disconnect()
+    except Exception as close_error:
+        logger.error(f"Instance {instance_id}: Error closing polling: {close_error}")
+```
+
+### Что происходит в коде HEXVEL?
+
+**Эта функция** — сердце обработки **LongPoll** в **HEXVEL**. Вот что она делает:
+
+- **Цикл**: Бесконечно слушает события через `bot.polling.listen()`.
+- **Проверка** сессии: `ensure_session_active` проверяет, активна ли сессия **API**, и перезапускает её, если она закрыта.
+- **Обработка** событий: Для каждого события (например, нового сообщения) вызывает `bot.router.route` для выполнения команды.
+- **Повторы**: Если возникают ошибки (например, лимит запросов VK API), код ждёт с экспоненциальной задержкой (до 5 попыток).
+- **Пустые** обновления: Если событий нет слишком долго (100 раз), переподключается.
+- **Закрытие**: При завершении корректно закрывает соединение.
