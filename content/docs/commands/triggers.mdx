@@ -1,0 +1,34 @@
+---
+title: Система триггеров
+description: Автоматические реакции на сообщения.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { Zap } from "lucide-react";
+
+# Триггеры <Zap className="inline-block h-5 w-5 text-emerald-500" />
+
+<CommandCard
+  title="Создать триггер"
+  description="Настроить реакцию на текст."
+  command=".д +триггер (название) (here/all) 'р/реплай'"
+  newLine="(текст)"
+  secondLine="(ответ)"
+  icon={<Zap className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Удалить триггер"
+  description="Удалить триггер."
+  command=".д -триггер (название)"
+/>
+
+<br />
+
+<CommandCard
+  title="Список триггеров"
+  description="Показать все триггеры."
+  command=".д триггеры"
+/>

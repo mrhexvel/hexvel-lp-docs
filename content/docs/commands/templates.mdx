@@ -1,0 +1,53 @@
+---
+title: Система шаблонов
+description: Управление шаблонами команд.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { FileText } from "lucide-react";
+
+# Шаблоны <FileText className="inline-block h-5 w-5 text-emerald-500" />
+
+<CommandCard
+  title="Создать шаблон"
+  description="Создать новый шаблон для повторного использования."
+  command=".д +шаб (название)"
+  newLine="(текст)"
+  example=".д +шаб тест"
+  exampleSecond="Читаешь? Подари 5 стикеров"
+  icon={<FileText className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Удалить шаблон"
+  description="Удалить существующий шаблон."
+  command=".д -шаб (название)"
+/>
+
+<br />
+
+<CommandCard
+  title="Редактировать шаблон"
+  description="Изменить текст шаблона."
+  command=".д ~шаб (название) (текст)"
+  example=".д ~шаб тест"
+  exampleSecond="Точно читал? Где стикеры?"
+/>
+
+<br />
+
+<CommandCard
+  title="Список шаблонов"
+  description="Показать все шаблоны."
+  command=".д шабы"
+/>
+
+<br />
+
+<CommandCard
+  title="Очистить шаблоны"
+  description="Удалить все шаблоны."
+  command=".д -шабы"
+/>

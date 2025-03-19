@@ -1,0 +1,35 @@
+---
+title: Система доверенных
+description: Управление списком доверенных.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { Shield } from "lucide-react";
+
+# Доверенные <Shield className="inline-block h-5 w-5 text-emerald-500" />
+
+<CommandCard
+  title="Добавить/удалить доверенного"
+  description="Управление списком доверенных."
+  command=".д ±дов (ссылка)"
+  example=".д -дов vk.com/id1"
+  icon={<Shield className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Посмотреть у кого вы в списке доверенных"
+  description="Показать список доверивших."
+  command=".д !довы"
+  example=".д !довы"
+  icon={<Shield className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Список доверенных"
+  description="Показать доверенных пользователей."
+  command=".д довы"
+/>

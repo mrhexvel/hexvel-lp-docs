@@ -1,0 +1,75 @@
+---
+title: Информация
+description: Узнайте больше о пользователях, скриптах и статистике.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { User, BarChart, List, MessageSquare } from "lucide-react";
+
+# Команды для получения информации <User className="inline-block h-5 w-5 text-emerald-500" />
+
+<CommandCard
+  title="Информация о пользователе HEXVEL"
+  description="Получить данные о пользователе по ссылке."
+  command=".д инфо (ссылка)"
+  icon={<User className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Информация о скриптах"
+  description="Узнать текущие данные о скриптах."
+  command="ск инфо"
+/>
+
+<br />
+
+<CommandCard
+  title="Информация о статистике профиля"
+  description="Просмотреть статистику вашего профиля."
+  command=".д статистика"
+  icon={<BarChart className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Получение ID пользователя"
+  description="Узнать ID по ссылке на профиль."
+  command=".д ид (ссылка)"
+/>
+
+<br />
+
+<CommandCard
+  title="Информация о общих беседах"
+  description="Показать общие чаты с пользователем."
+  command=".д общчаты (ссылка)"
+  icon={<MessageSquare className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Список команд и агентов"
+  description="Полный список доступных команд."
+  command=".д помощь"
+  icon={<List className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Статистика профиля (v2)"
+  description="Расширенная статистика за указанный период."
+  command=".д стата (кол-во дней)"
+/>
+
+<br />
+
+<CommandCard
+  title="Получение бесед сообщества"
+  description="Список чатов сообщества по ссылке."
+  command=".д чаты (ссылка)"
+/>

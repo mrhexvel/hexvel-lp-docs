@@ -1,0 +1,65 @@
+---
+title: Система браков
+description: Управление виртуальными браками.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { Heart } from "lucide-react";
+
+# Браки <Heart className="inline-block h-5 w-5 text-red-700" fill="red" />
+
+<CommandCard
+  title="Предложить брак"
+  description="Предложить вступить в брак."
+  command=".д брак (ссылка)"
+  example=".д брак vk.com/id1"
+  icon={<Heart className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Отказаться от брака"
+  description="Отклонить предложение."
+  command=".д бракотказать"
+/>
+
+<br />
+
+<CommandCard
+  title="Принять брак"
+  description="Согласиться на брак."
+  command=".д бракпринять"
+/>
+
+<br />
+
+<CommandCard
+  title="Посмотреть брак"
+  description="Информация о текущем браке."
+  command=".д мойбрак"
+/>
+
+<br />
+
+<CommandCard
+  title="Развод"
+  description="Подать на развод."
+  command=".д -брак"
+/>
+
+<br />
+
+<CommandCard
+  title="Усыновление"
+  description="Усыновить/удочерить пользователя."
+  command=".д ±ребёнок"
+/>
+
+<br />
+
+<CommandCard
+  title="Принять/отказать усыновление"
+  description="Решить по усыновлению."
+  command=".д принятьзачатие/отказатьзачатие"
+/>

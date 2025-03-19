@@ -1,0 +1,35 @@
+---
+title: Система алиасов
+description: Создание сокращений для команд.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { Bookmark } from "lucide-react";
+
+# Алиасы <Bookmark className="inline-block h-5 w-5 text-emerald-500" />
+
+<CommandCard
+  title="Создать алиас"
+  description="Назначить сокращение для команды."
+  command=".д +алиас (название)"
+  newLine="(команда)"
+  example=".д +алиас п"
+  exampleSecond=".д пинг"
+  icon={<Bookmark className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Удалить алиас"
+  description="Удалить существующий алиас."
+  command=".д -алиас (название)"
+/>
+
+<br />
+
+<CommandCard
+  title="Список алиасов"
+  description="Показать все алиасы."
+  command=".д алиасы"
+/>

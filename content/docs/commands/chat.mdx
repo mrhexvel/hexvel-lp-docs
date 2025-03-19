@@ -1,0 +1,112 @@
+---
+title: Действия с беседой
+description: Управление чатами в VK.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { MessageSquare, UserPlus, Lock } from "lucide-react";
+
+# Беседы <MessageSquare className="inline-block h-5 w-5 text-emerald-500" />
+
+<CommandCard
+  title="Создать беседу"
+  description="Создать новую беседу."
+  command=".д создатьчат (название)"
+  example=".д создатьчат хексоеды"
+  icon={<MessageSquare className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Изменить название"
+  description="Сменить название беседы."
+  command=".д название (новое название)"
+  example=".д название ХексКоинФерма"
+/>
+
+<br />
+
+<CommandCard
+  title="Закрепить/открепить"
+  description="Закрепить или открепить сообщение."
+  command=".д закреп/откреп (ответ на сообщение)"
+/>
+
+<br />
+
+<CommandCard
+  title="Добавить/удалить участника"
+  description="Управление участниками."
+  command=".д добавить/кик (ссылка)"
+  example=".д кик vk.com/id1"
+  icon={<UserPlus className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Мут/размут"
+  description="Выдать или снять мут."
+  command=".д мут/размут (ссылка)"
+  example=".д размут vk.com/id1"
+/>
+
+<br />
+
+<CommandCard
+  title="Список мутов"
+  description="Показать замученных участников."
+  command=".д муты"
+/>
+
+<br />
+
+<CommandCard
+  title="Администратор"
+  description="Назначить/снять администратора."
+  command=".д ±адм (ссылка)"
+  example=".д -адм vk.com/id1"
+/>
+
+<br />
+
+<CommandCard
+  title="Чат-ссылка"
+  description="Получить ссылку на чат."
+  command=".д чатссылка"
+/>
+
+<br />
+
+<CommandCard
+  title="Статистика беседы"
+  isDeclared
+  description="[Убрано] Показать статистику чата."
+  command=".д чатстата"
+/>
+
+<br />
+
+<CommandCard
+  title="Информация о беседе"
+  description="Подробности о чате."
+  command=".д чатинфо"
+/>
+
+<br />
+
+<CommandCard
+  title="Упоминания"
+  description="Включить/выключить упоминания."
+  command=".д ±упоминания"
+/>
+
+<br />
+
+<CommandCard
+  title="Уведомления"
+  description="Включить/выключить уведомления."
+  command=".д ±уведы"
+  icon={<Lock className="h-5 w-5 text-emerald-500" />}
+/>

@@ -1,0 +1,24 @@
+---
+title: Автоматизированные скрипты
+description: Автоматизируйте задачи с помощью скриптов.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { Zap } from "lucide-react";
+
+# Автоматизированные скрипты <Zap className="inline-block h-5 w-5 text-emerald-500" />
+
+<CommandCard
+  title="Авто-обновление обложки"
+  description="Включить или выключить обновление обложки."
+  command="ск ±обложка"
+  icon={<Zap className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Авто-ферма ирис-коинов"
+  description="Автоматический сбор коинов каждые 4 часа."
+  command="ск ±фарм"
+/>

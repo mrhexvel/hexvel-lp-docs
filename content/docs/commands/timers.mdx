@@ -1,0 +1,35 @@
+---
+title: Система таймеров
+description: Настройка автоматических действий по времени.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { Clock } from "lucide-react";
+
+# Таймеры <Clock className="inline-block h-5 w-5 text-emerald-500" />
+
+<CommandCard
+  title="Установить таймер"
+  description="Создать таймер с действием."
+  command=".д +таймер (название) (интервал)"
+  newLine="(текст)"
+  example=".д +таймер пиво 5 минут"
+  exampleSecond="Купите пиво"
+  icon={<Clock className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Удалить таймер"
+  description="Удалить таймер."
+  command=".д -таймер (название)"
+/>
+
+<br />
+
+<CommandCard
+  title="Список таймеров"
+  description="Показать активные таймеры."
+  command=".д таймеры"
+/>

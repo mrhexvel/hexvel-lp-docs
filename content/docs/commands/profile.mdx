@@ -1,0 +1,67 @@
+---
+title: Действия с профилем
+description: Управляйте своим профилем VK.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { User, Heart, Lock } from "lucide-react";
+
+# Действия с профилем <User className="inline-block h-5 w-5 text-emerald-500" />
+
+<CommandCard
+  title="Добавить/удалить друга"
+  description="Управление списком друзей."
+  command=".д ±др (ссылка)"
+  example=".д +др vk.com/id1"
+  icon={<User className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Чёрный список"
+  description="Добавить/убрать из ЧС."
+  command=".д ±чс (ссылка)"
+  example=".д -чс vk.com/id1"
+/>
+
+<br />
+
+<CommandCard
+  title="Лайк аватарки"
+  description="Поставить/убрать лайк с аватарки."
+  command=".д ±лайк (ссылка)"
+  example=".д +лайк vk.com/id1"
+  icon={<Heart className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Написать в ЛС"
+  description="Отправить сообщение в личку."
+  command=".д влс (ссылка)"
+  newLine="(текст)"
+  example=".д влс vk.com/id1"
+  exampleSecond="Привет"
+/>
+
+<br />
+
+<CommandCard
+  title="Публикация поста"
+  description="Опубликовать пост на стене."
+  command=".д опубликовать"
+  newLine="(текст)"
+  example=".д опубликовать"
+  exampleSecond="Всем привет"
+/>
+
+<br />
+
+<CommandCard
+  title="Закрыть/открыть профиль"
+  description="Изменить приватность профиля."
+  command=".д ±приват"
+  icon={<Lock className="h-5 w-5 text-emerald-500" />}
+/>

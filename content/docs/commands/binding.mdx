@@ -1,0 +1,63 @@
+---
+title: Система привязки
+description: Привязка бесед и префиксов.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { Link } from "lucide-react";
+
+# Привязка <Link className="inline-block h-5 w-5 text-emerald-500" />
+
+<CommandCard
+  title="Привязать беседу"
+  description="Привязать беседу по названию."
+  command=".д привязать (название)"
+  example=".д привязать хексоеды"
+  icon={<Link className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Отвязать беседу"
+  description="Отвязать беседу."
+  command=".д отвязать (название)"
+  example=".д отвязать хексоеды"
+/>
+
+<br />
+
+<CommandCard
+  title="Написать в беседу"
+  description="Отправить сообщение в привязанную беседу."
+  command=".д отправить (название) 'фото'"
+  newLine="(текст)"
+  example=".д отправить хексоеды"
+  exampleSecond="Вы чем тут занимаетесь?"
+/>
+
+<br />
+
+<CommandCard
+  title="Список привязанных бесед"
+  description="Показать все привязанные чаты."
+  command=".д привязанные"
+/>
+
+<br />
+
+<CommandCard
+  title="Привязать префикс"
+  description="Назначить префикс для беседы."
+  command=".д привязатьпрефикс (префикс) (название)"
+  example=".д привязатьпрефикс ! хексоеды"
+/>
+
+<br />
+
+<CommandCard
+  title="Отвязать префикс"
+  description="Убрать префикс из беседы."
+  command=".д отвязатьпрефикс (название)"
+  example=".д отвязатьпрефикс хексоеды"
+/>

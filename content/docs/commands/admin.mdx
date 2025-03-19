@@ -1,0 +1,80 @@
+---
+title: Для администраторов
+description: Административные команды HEX Comand.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { ShieldAlert } from "lucide-react";
+
+# Администрирование <ShieldAlert className="inline-block h-5 w-5 text-emerald-500" />
+
+<CommandCard
+  title="Регистрация пользователя"
+  description="Зарегистрировать нового пользователя."
+  command="адм рег (ответ на сообщение с ключом)"
+  icon={<ShieldAlert className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Удаление пользователя"
+  description="Удалить пользователя из системы."
+  command="адм удалить (ссылка)"
+/>
+
+<br />
+
+<CommandCard
+  title="Изменение ранга"
+  description="Назначить ранг пользователю (1-5)."
+  command="адм ранг (1-5)"
+/>
+
+<br />
+
+<CommandCard
+  title="Рестарт всех ботов"
+  description="Перезапустить всех ботов."
+  command="адм restartall"
+/>
+
+<br />
+
+<CommandCard
+  title="Рестарт бота"
+  description="Перезапустить конкретного бота."
+  command="адм рестарт (ссылка)"
+/>
+
+<br />
+
+<CommandCard
+  title="Остановка бота"
+  description="Остановить бота."
+  command="адм стоп (ссылка)"
+/>
+
+<br />
+
+<CommandCard
+  title="Информация о токенах"
+  description="Проверить валидность токенов (от ранга AGENT)."
+  command="адм чек (ссылка)"
+/>
+
+<br />
+
+<CommandCard
+  title="Кик неавторизованных"
+  description="Удалить из чата неавторизованных."
+  command=".д !кик"
+/>
+
+<br />
+
+<CommandCard
+  title="Добавить авторизованных"
+  description="Добавить в чат авторизованных."
+  command=".д !дб"
+/>

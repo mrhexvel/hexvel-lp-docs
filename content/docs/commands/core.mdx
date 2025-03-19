@@ -1,0 +1,212 @@
+---
+title: Основной функционал
+description: Базовые команды HEX Comand.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { Clock, Trash, Brain, Music } from "lucide-react";
+
+# Основной функционал <Clock className="inline-block h-5 w-5 text-emerald-500" />
+
+<CommandCard
+  title="Измерение пинга"
+  description="Проверить задержку."
+  command=".д пинг"
+  icon={<Clock className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Удаление сообщений"
+  description="Удалить указанное количество сообщений."
+  command=".д дд (кол-во)"
+  example=".д дд 3"
+  icon={<Trash className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Чтение сообщений"
+  description="Отметить сообщения прочитанными."
+  command=".д прочитать (лички/группы/все)"
+  example=".д прочитать группы"
+/>
+
+<br />
+
+<CommandCard
+  title="Просмотры сообщения"
+  description="Показать количество просмотров."
+  command=".д просмотры (ответ на сообщение)"
+/>
+
+<br />
+
+<CommandCard
+  title="Мегапуш"
+  isDeclared
+  description="[Убрано] Отправить массовое уведомление."
+  command=".д мегапуш"
+/>
+
+<br />
+
+<CommandCard
+  title="Сокращение ссылок"
+  description="Сократить длинную ссылку."
+  command=".д сс (ссылка)"
+  example=".д сс vk.com/id1"
+/>
+
+<br />
+
+<CommandCard
+  title="Видео в ГС"
+  description="Преобразовать видео в голосовое сообщение."
+  command=".д вгс (видео)"
+/>
+
+<br />
+
+<CommandCard
+  title="Список пушей"
+  description="Показать последние уведомления (лимит 3)."
+  command=".д пуши"
+/>
+
+<br />
+
+<CommandCard
+  title="Вики"
+  description="Поиск в Википедии."
+  command=".д вики"
+  newLine="(запрос)"
+  example=".д вики Vk"
+/>
+
+<br />
+
+<CommandCard
+  title="Шифрование/дешифрование"
+  description="Зашифровать или расшифровать текст."
+  command=".д шифр/дешифр (текст)"
+  example=".д дешифр HLVIXg60luH1CQFbkN9XQ/A+wA0T4IwPRcWO29R6/W0="
+/>
+
+<br />
+
+<CommandCard
+  title="Погода"
+  description="Узнать погоду в городе."
+  command=".д погода (город)"
+  example=".д погода Воронеж"
+/>
+
+<br />
+
+<CommandCard
+  title="Накрутка шагов"
+  description="Увеличить количество шагов."
+  command=".д шаги"
+/>
+
+<br />
+
+<CommandCard
+  title="Редактирование ГС"
+  description="Изменить текст в голосовом сообщении."
+  command=".д редачгс (текст) (ответ на гс)"
+/>
+
+<br />
+
+<CommandCard
+  title="ИИ"
+  description="Задать вопрос искусственному интеллекту."
+  command=".д ии"
+  newLine="(запрос)"
+  example=".д ии"
+  exampleSecond="как найти корень из 25?"
+  icon={<Brain className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Текст в аудио"
+  isDeclared
+  description="[Убрано] Преобразовать текст в аудио"
+  command=".д аудио (текст)"
+  example=".д аудио Всем привет"
+/>
+
+<br />
+
+<CommandCard
+  title="Последнее сообщение"
+  description="Найти последнее сообщение пользователя."
+  command=".д смс (ссылка)"
+  example=".д смс vk.com/id1"
+/>
+
+<br />
+
+<CommandCard
+  title="Первое сообщение"
+  description="Найти первое сообщение в чате."
+  command=".д первсообщение"
+/>
+
+<br />
+
+<CommandCard
+  title="Рекомендованные треки"
+  description="Получить список треков."
+  command=".д рекаудио"
+  icon={<Music className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Аудио в ГС"
+  description="Преобразовать аудио в голосовое сообщение."
+  command=".д вгс (аудио/видео)"
+/>
+
+<br />
+
+<CommandCard
+  title="Кража аватарки"
+  description="Скопировать аватарку пользователя."
+  command=".д ава (ссылка)"
+  example=".д ава vk.com/id1"
+/>
+
+<br />
+
+<CommandCard
+  title="РП-действие"
+  description="Выполнить ролевое действие."
+  command=".д рп (текст) (ссылка)"
+  example=".д рп пнуть vk.com/id1"
+/>
+
+<br />
+
+<CommandCard
+  title="Очистка чатов"
+  description="Удалить все чаты (без восстановления)."
+  command=".д -чаты (лс/беседы)"
+  example=".д -чаты беседы"
+/>
+
+<br />
+
+<CommandCard
+  title="Орех"
+  description="Отправить стикер 'орех'."
+  command=".д орех"
+/>

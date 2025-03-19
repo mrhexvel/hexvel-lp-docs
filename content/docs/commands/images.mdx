@@ -1,0 +1,106 @@
+---
+title: Действия с изображением
+description: Генерация и обработка изображений.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { Image, Scissors, Palette } from "lucide-react";
+
+# Изображения <Image className="inline-block h-5 w-5 text-emerald-500" />
+
+<CommandCard
+  title="Генерация цитаты"
+  description="Создать цитату из сообщения."
+  command=".д цит (ответ на сообщение)"
+  icon={<Image className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Генерация демотиватора"
+  description="Создать демотиватор."
+  command=".д дем (фото)"
+  newLine="(текст)"
+  example=".д дем (фото)"
+  exampleSecond="Когда всё работает"
+/>
+
+<br />
+
+<CommandCard
+  title="Выделение граней"
+  description="Обработать изображение, выделив грани."
+  command=".д грани (фото)"
+/>
+
+<br />
+
+<CommandCard
+  title="Обрезка на 6 частей"
+  description="Разделить фото на 6 частей."
+  command=".д обрезка (фото)"
+  icon={<Scissors className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Выделение пикселей"
+  description="Пикселизировать изображение."
+  command=".д пиксели (фото)"
+/>
+
+<br />
+
+<CommandCard
+  title="NSFW картинки"
+  description="Получить случайные NSFW изображения."
+  command=".д нсфв (кол-во)"
+  example=".д нсфв 5"
+/>
+
+<br />
+
+<CommandCard
+  title="Аниме картинки"
+  description="Получить случайные аниме изображения."
+  command=".д тян (кол-во)"
+  example=".д тян 2"
+/>
+
+<br />
+
+<CommandCard
+  title="Фон цитат"
+  description="Установить фон для цитат."
+  command=".д фонцитат (фото)"
+  icon={<Palette className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Удалить фон цитат"
+  description="Убрать фон с цитат."
+  command=".д -фонцитат"
+/>
+
+<br />
+
+<CommandCard
+  title="QR-код"
+  description="Создать QR-код из ссылки."
+  command=".д qrcode (ссылка) 'фото'"
+  example=".д qrcode vk.com/id1"
+/>
+
+<br />
+
+<CommandCard
+  title="Генерация изображений (ИИ)"
+  description="Создать изображение с помощью ИИ."
+  command=".д ген 'default/kandinsky/uhd/anime'"
+  newLine="(запрос)"
+  example=".д ген uhd Кексики"
+/>

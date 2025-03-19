@@ -1,0 +1,24 @@
+---
+title: Изменение конфигурации
+description: Настройте префиксы и данные модуля.
+---
+
+import CommandCard from "@/components/CommandCard";
+import { Settings } from "lucide-react";
+
+# Изменение конфигурации
+
+<CommandCard
+  title="Изменение префиксов"
+  description="Сменить префикс для типа команд."
+  command=".д префикс (тип префикса) (новый префикс)"
+  icon={<Settings className="h-5 w-5 text-emerald-500" />}
+/>
+
+<br />
+
+<CommandCard
+  title="Изменение данных"
+  description="Обновить ник профиля."
+  command=".д ник (ник)"
+/>
