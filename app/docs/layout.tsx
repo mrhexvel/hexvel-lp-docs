@@ -1,7 +1,14 @@
 import { source } from "@/lib/source";
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
 import { Command, Home } from "lucide-react";
+import { Metadata } from "next";
 import type { ReactNode } from "react";
+
+export const metadata: Metadata = {
+  icons: {
+    icon: "/webstite-logo.png",
+  },
+};
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (

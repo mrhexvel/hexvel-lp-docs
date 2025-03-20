@@ -1,5 +1,5 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
-import { Book } from "lucide-react";
+import { Book, Command } from "lucide-react";
 import Image from "next/image";
 
 /**
@@ -11,6 +11,7 @@ import Image from "next/image";
  */
 export const baseOptions: BaseLayoutProps = {
   nav: {
+    transparentMode: "always",
     title: (
       <>
         <Image
@@ -31,6 +32,11 @@ export const baseOptions: BaseLayoutProps = {
       text: "Документация",
       url: "/docs",
       active: "nested-url",
+    },
+    {
+      icon: <Command />,
+      text: "Команды",
+      url: "/docs/commands",
     },
   ],
 };
