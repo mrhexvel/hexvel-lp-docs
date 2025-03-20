@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { Pacifico } from "next/font/google";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import AttachButton from "./AttachButton";
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -88,6 +90,7 @@ export default function HeroGeometric({
   title2?: string;
   description?: string;
 }) {
+  const router = useRouter();
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
@@ -162,8 +165,8 @@ export default function HeroGeometric({
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
           >
             <Image
-              src="https://kokonutui.com/logo.svg"
-              alt="Kokonut UI"
+              src="/website-logo.png"
+              alt="HEXVEL"
               width={20}
               height={20}
             />
@@ -201,6 +204,15 @@ export default function HeroGeometric({
             <p className="text-base sm:text-lg md:text-xl text-white/40 mb-8 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
               {description}
             </p>
+          </motion.div>
+
+          <motion.div
+            custom={2}
+            variants={fadeUpVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <AttachButton onClick={() => router.push("/docs")} />
           </motion.div>
         </div>
       </div>

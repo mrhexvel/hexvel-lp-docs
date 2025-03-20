@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
   icons: {
-    icon: "/webstite-logo.png",
+    icon: "/website-logo.png",
   },
 };
 
